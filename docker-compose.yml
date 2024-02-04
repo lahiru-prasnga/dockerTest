@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # MongoDB Service
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  # MERN Stack Application Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mern-app
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URI: "mongodb://root:example@mongodb:27017/dockerTest"  # Replace with your actual DB name
+
+  # Add any other services your application might need here
