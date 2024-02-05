@@ -22,6 +22,10 @@ app.get('/testServer/:id',(req,res)=>{
     res.send('Hello '+req.params.id+' to dockerTest')
 })
 
+app.get('/testServer1/:id',(req,res)=>{
+    res.send('Hello111 '+req.params.id+' to dockerTest')
+})
+
 app.get('',(req,res)=>{
     res.send('This is dckerTest')
 })
