@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const dataModel=require('./model')
 
 const app = express()
 
@@ -22,8 +23,14 @@ app.get('/testServer/:id',(req,res)=>{
     res.send('Hello '+req.params.id+' to dockerTest')
 })
 
-app.get('/testServer1/:id',(req,res)=>{
-    res.send('Hello111 '+req.params.id+' to dockerTest')
+app.get('/testServer/addData/:data',(req,res)=>{
+    dataModel.create(req.params.data)
+    .then(data=>{
+        res.send(data)
+    })
+    .catch(err=>{
+        res.send(err)
+    })
 })
 
 app.get('',(req,res)=>{
